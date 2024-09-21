@@ -1,14 +1,15 @@
 import { Router } from "express";
 import { TodosController } from "./controller";
+import { prisma } from "../../data/postgres/postgres";
 
 
 export class TodoRoutes {
      
     static get routes(): Router {
 
-        const router = Router();
-
-        const todoController = new TodosController();
+        const router = Router();        
+        
+        const todoController = new TodosController(prisma);
 
         router.get('/', todoController.getTodos );
         router.get('/:id', todoController.getTodosById );
