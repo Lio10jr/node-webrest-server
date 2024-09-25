@@ -1,6 +1,6 @@
-
-
 # Dev
+
+node version = 20.11.1
 
 1. Install all dependencies:
     ````
