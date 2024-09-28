@@ -20,11 +20,9 @@ export class UpdateTodoDtos {
 
         if ( !id || isNaN( Number(id)) ) return ["Id must be a valid number", undefined];
 
-        if ( isNaN(id) ) return ["property id should be a number", undefined];
-        
-        if ( !text ) return ["property text is required", undefined];
-
-        if ( typeof text != 'string') return ["text property should be a String value", undefined];
+        if ( text ) {
+            if (typeof text !== 'string') return ["Text property should be a string", undefined];
+        }
 
         let newCompletedAt = completedAt;
         

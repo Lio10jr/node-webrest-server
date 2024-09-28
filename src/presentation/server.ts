@@ -9,7 +9,8 @@ interface Options {
 
 export class Server {
 
-    private app = express();
+    public app = express();
+    private routerListen?: any;
     private readonly pathPublic;
     private readonly port;
     private readonly routers;
@@ -38,8 +39,12 @@ export class Server {
             res.sendFile(indexPath);
         });
 
-        this.app.listen(this.port, () => {
+        this.routerListen = this.app.listen(this.port, () => {
             console.log(`Server running on port ${this.port}`)
-        })
+        });
+    }
+
+    async close() {
+        this.routerListen?.close();
     }
 }

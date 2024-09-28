@@ -9,14 +9,14 @@ export class CreateTodoDtos {
     static create(props: { [key: string]: any }): [string?, CreateTodoDtos?] {
         let { text, completedAt } = props;
         
-        if ( !text ) return ["text property is required", undefined];
+        if ( !text || text.length === 0 ) return ["text property is required", undefined];
 
         if ( typeof text != 'string') return ["text property should be a String value", undefined];
 
         if ( completedAt ) {
             completedAt = new Date(completedAt);
             if( completedAt.toString() === "Invalid Date")
-                return ["CompletedAt must be a valid date"];
+                return ["CompletedAt must be a valid date", undefined];
         } else {
             completedAt = new Date();
         }
